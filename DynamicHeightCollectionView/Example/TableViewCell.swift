@@ -15,11 +15,11 @@ class TableViewCell: UITableViewCell {
     func configure(with arr: [String]) {
         self.arr = arr
         self.collectionView.reloadData()
-        self.collectionView.layoutIfNeeded()
+       // self.collectionView.layoutIfNeeded()
     }
 }
 
-extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.arr.count
     }
@@ -29,10 +29,14 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
         cell.textLabel.text = self.arr[indexPath.row]
         return cell
     }
-    
+}
+
+extension TableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = self.arr[indexPath.row]
-        let cellWidth = text.size(withAttributes:[.font: UIFont.systemFont(ofSize:12.0)]).width + 30.0
-        return CGSize(width: cellWidth, height: 30.0)
+        let textSize = text.size(withAttributes:[.font: UIFont.systemFont(ofSize:12.0)])
+        let cellHeight = textSize.height + 20.0
+        let cellWidth = textSize.width + 30.0
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
