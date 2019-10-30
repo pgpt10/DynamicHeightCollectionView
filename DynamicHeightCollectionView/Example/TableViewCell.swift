@@ -15,7 +15,7 @@ class TableViewCell: UITableViewCell {
     func configure(with arr: [String]) {
         self.arr = arr
         self.collectionView.reloadData()
-        self.collectionView.layoutIfNeeded()
+       // self.collectionView.layoutIfNeeded()
     }
 }
 
